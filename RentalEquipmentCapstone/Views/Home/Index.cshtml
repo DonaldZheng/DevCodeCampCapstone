@@ -1,8 +1,22 @@
-﻿@{
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<RentalEquipmentCapstone.Data.StripeSettings> Stripe
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Donald's Website</h1>
+
+    <form asp-action="Charge" asp-controller="Home" method="POST">
+        <article>
+            <label>Amount: $5.00</label>
+        </article>
+        <script src="//checkout.stripe.com/vs/checkout.js"
+                class="stripe-button"
+                data-keyboard="@Stripe.Value.PublishableKey"
+                data-locale="auto"
+                data-description="Sample Charge"
+                data-amount="500">
+        </script>
+    </form>
 </div>

@@ -53,6 +53,7 @@ namespace RentalEquipmentCapstone
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
         }
 
