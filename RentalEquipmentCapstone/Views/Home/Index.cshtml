@@ -5,13 +5,11 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome to Donald's Website</h1>
-
     <form asp-action="Charge" asp-controller="Home" method="POST">
         <article>
             <label>Amount: $5.00</label>
         </article>
-        <script src="//checkout.stripe.com/vs/checkout.js"
+        <script src="//checkout.stripe.com/v2/checkout.js"
                 class="stripe-button"
                 data-keyboard="@Stripe.Value.PublishableKey"
                 data-locale="auto"

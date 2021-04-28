@@ -47,10 +47,16 @@ namespace RentalEquipmentCapstone.Controllers
                 Customer = customer.Id
 
             });
-
-           
-
-           
+            if (charge.Status == "succeeded")
+            {
+                string BalanceTransactionId = charge.BalanceTransactionId; // if successful give balance transaction #
+                return View();
+            }
+            else
+            {
+                
+            }
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
