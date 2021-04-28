@@ -39,7 +39,16 @@ namespace RentalEquipmentCapstone.Controllers
                 Source = stripeToken
             });
 
-            return null;
+            var charge = charges.Create(new ChargeCreateOptions
+            {
+                Amount = 500,
+                Description= "Test Payment",
+                Currency= "USD",
+                Customer = customer.Id
+
+            });
+
+           
 
            
         }
