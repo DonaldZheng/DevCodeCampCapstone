@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RentalEquipmentCapstone.Models;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,6 +27,21 @@ namespace RentalEquipmentCapstone.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Charge(string stripeEmail, string stripeToken)
+        {
+            var customers = new CustomerService();
+            var charges = new ChargeService();
+
+            var customer = customers.Create(new CustomerCreateOptions {
+                Email = stripeEmail,
+                Source = stripeToken
+            });
+
+            return null;
+
+           
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
