@@ -9,11 +9,19 @@
         <article>
             <label>Amount: $5.00</label>
         </article>
-        <script src="//checkout.stripe.com/v2/checkout.js"
+        @*<script src="//checkout.stripe.com/v2/checkout.js"
                 class="stripe-button"
                 data-keyboard="@Stripe.Value.PublishableKey"
                 data-locale="auto"
                 data-description="Sample Charge">
+        </script>*@
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                Stripe.setPublishableKey('PUBLISHABLE_KEY');
+                data-key= "@Stripe.Value.PublishableKey"
+                data-description="Sample Charge"
+                data-amount="500"
+                data-locale="auto">
+
         </script>
     </form>
 </div>

@@ -44,7 +44,14 @@ namespace RentalEquipmentCapstone.Controllers
                 Amount = 500,
                 Description= "Test Payment",
                 Currency= "USD",
-                Customer = customer.Id
+                Customer = customer.Id,
+                ReceiptEmail = stripeEmail,
+                Metadata = new Dictionary<string, string>()
+                {
+                    {"OrderId", "01" },
+                    {"PostCode", "53202" }
+                }
+
 
             });
             if (charge.Status == "succeeded")
