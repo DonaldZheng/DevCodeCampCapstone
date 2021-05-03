@@ -36,6 +36,14 @@ namespace RentalEquipmentCapstone.Data
         {
             get; set;
         }
+        public DbSet<Product> Products
+        {
+            get; set;
+        }
+        public DbSet<CustomerProduct> CustomerProducts
+        {
+            get; set;
+        }
     }
          
 }
