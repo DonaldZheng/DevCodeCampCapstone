@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RentalEquipmentCapstone.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,38 +7,27 @@ using System.Threading.Tasks;
 
 namespace RentalEquipmentCapstone.Controllers
 {
-    public class ProductController : Controller
+    public class CustomerProductController : Controller
     {
-        private ApplicationDbContext _context;
-        public ProductController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-        // GET: ProductController
+        // GET: CustomerProductController
         public ActionResult Index()
         {
-            var products = _context.Products.ToList();
-            if (products.Count == 0)
-            {
-                return RedirectToAction(nameof(Create));
-            }
-
-            return View(products);
+            return View();
         }
 
-        // GET: ProductController/Details/5
+        // GET: CustomerProductController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: ProductController/Create
+        // GET: CustomerProductController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: ProductController/Create
+        // POST: CustomerProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -54,13 +42,13 @@ namespace RentalEquipmentCapstone.Controllers
             }
         }
 
-        // GET: ProductController/Edit/5
+        // GET: CustomerProductController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Edit/5
+        // POST: CustomerProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -75,13 +63,13 @@ namespace RentalEquipmentCapstone.Controllers
             }
         }
 
-        // GET: ProductController/Delete/5
+        // GET: CustomerProductController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ProductController/Delete/5
+        // POST: CustomerProductController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
