@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using RentalEquipmentCapstone.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +11,17 @@ namespace RentalEquipmentCapstone.Controllers
 {
     public class CustomerProductController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public CustomerProductController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         // GET: CustomerProductController
         public ActionResult Index()
         {
-            return View();
+            var cart = _context.CustomerProducts.Include(c => c.Product).ToList();
+            return View(cart);
         }
 
         // GET: CustomerProductController/Details/5

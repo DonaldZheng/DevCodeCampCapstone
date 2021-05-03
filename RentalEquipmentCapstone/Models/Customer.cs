@@ -57,7 +57,10 @@ namespace RentalEquipmentCapstone.Models
         {
             get; set;
         }
-
+        public ICollection<CustomerProduct> ShoppingCart
+        {
+            get; set;
+        }
         [Display(Name = "Longitude")]
         public double Longitude
         {

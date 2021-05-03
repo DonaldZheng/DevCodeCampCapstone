@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentalEquipmentCapstone.Data;
 
-namespace RentalEquipmentCapstone.Data.Migrations
+namespace RentalEquipmentCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -48,8 +48,15 @@ namespace RentalEquipmentCapstone.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2a93884f-70cf-402c-91c4-11cc4c302531",
-                            ConcurrencyStamp = "4b05f3e5-3b43-4ee9-938d-16ccf6e00481",
+                            Id = "d923287b-8d39-4851-8151-cb4e12e5bb9e",
+                            ConcurrencyStamp = "d3d29718-808e-46c0-a82f-c9e55dfef7ff",
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER"
+                        },
+                        new
+                        {
+                            Id = "3b95fbb5-7919-4e9a-a100-e8573ef10b51",
+                            ConcurrencyStamp = "352c6f2b-3c0e-406a-9e31-5efc2d7090b5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -224,6 +231,132 @@ namespace RentalEquipmentCapstone.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.Customer", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Equipment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.CustomerProduct", b =>
+                {
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CustomerId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CustomerProducts");
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.Product", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            Description = "Let Us Do All The Planning For Your Date!",
+                            Name = "Bench Rental",
+                            Price = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            Description = "Dumbbell Ranging from 2.5lbs to 150lbs",
+                            Name = "Dumbbell Rental",
+                            Price = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 3,
+                            Description = "Plate Ranging from 2.5lbs to 45lbs",
+                            Name = "Plate Rental",
+                            Price = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 4,
+                            Description = "Barbell For Benching, Deadlifting, and Squating",
+                            Name = "Barbell Rental",
+                            Price = 100.0
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            Description = "Racks To Place Your Dumbbells and Plates",
+                            Name = "Rack Rental",
+                            Price = 100.0
+                        });
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -273,6 +406,35 @@ namespace RentalEquipmentCapstone.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.Customer", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.CustomerProduct", b =>
+                {
+                    b.HasOne("RentalEquipmentCapstone.Models.Customer", "Customer")
+                        .WithMany("ShoppingCart")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RentalEquipmentCapstone.Models.Product", "Product")
+                        .WithMany("ShoppingCart")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.Product", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
                 });
 #pragma warning restore 612, 618
         }
