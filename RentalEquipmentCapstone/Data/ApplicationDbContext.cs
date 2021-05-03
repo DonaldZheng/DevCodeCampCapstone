@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CapstoneOne.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RentalEquipmentCapstone.Models;
@@ -59,6 +60,10 @@ namespace RentalEquipmentCapstone.Data
             get; set;
         }
         public DbSet<CustomerProduct> CustomerProducts
+        {
+            get; set;
+        }
+        public DbSet<Admin> Admins
         {
             get; set;
         }
