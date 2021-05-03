@@ -25,10 +25,10 @@ namespace RentalEquipmentCapstone.ActionFilters
                     context.Result = new RedirectToActionResult("Index",
                     "Customer", null);
                 }
-                else if (_claimsPrincipal.IsInRole("Employee"))
+                else if (_claimsPrincipal.IsInRole("Admin"))
                 {
                     context.Result = new RedirectToActionResult("Index",
-                    "Employee", null);
+                    "Admin", null);
                 }
             }
         }

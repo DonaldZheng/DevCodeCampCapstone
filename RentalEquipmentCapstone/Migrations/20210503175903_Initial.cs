@@ -68,6 +68,28 @@ namespace RentalEquipmentCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    AdminId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    IdentityUserId = table.Column<string>(nullable: true),
+                    Longitude = table.Column<double>(nullable: false),
+                    Latitude = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.AdminId);
+                    table.ForeignKey(
+                        name: "FK_Admins_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -232,8 +254,8 @@ namespace RentalEquipmentCapstone.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "d923287b-8d39-4851-8151-cb4e12e5bb9e", "d3d29718-808e-46c0-a82f-c9e55dfef7ff", "Customer", "CUSTOMER" },
-                    { "3b95fbb5-7919-4e9a-a100-e8573ef10b51", "352c6f2b-3c0e-406a-9e31-5efc2d7090b5", "Admin", "ADMIN" }
+                    { "314a9413-2da6-4bd5-a57f-ea2c962e01be", "06430445-5537-4f60-934f-4866b0c824e3", "Customer", "CUSTOMER" },
+                    { "5eb8a84f-8667-4307-8b76-c8a846d927c2", "7329f8a1-a4b2-46b0-9f9f-e6e309d6e862", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -247,6 +269,11 @@ namespace RentalEquipmentCapstone.Migrations
                     { 4, "Barbell For Benching, Deadlifting, and Squating", null, "Barbell Rental", 100.0 },
                     { 5, "Racks To Place Your Dumbbells and Plates", null, "Rack Rental", 100.0 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Admins_IdentityUserId",
+                table: "Admins",
+                column: "IdentityUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -305,6 +332,9 @@ namespace RentalEquipmentCapstone.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Admins");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

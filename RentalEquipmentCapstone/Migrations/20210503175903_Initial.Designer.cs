@@ -10,7 +10,7 @@ using RentalEquipmentCapstone.Data;
 namespace RentalEquipmentCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210503143808_Initial")]
+    [Migration("20210503175903_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,15 +50,15 @@ namespace RentalEquipmentCapstone.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d923287b-8d39-4851-8151-cb4e12e5bb9e",
-                            ConcurrencyStamp = "d3d29718-808e-46c0-a82f-c9e55dfef7ff",
+                            Id = "314a9413-2da6-4bd5-a57f-ea2c962e01be",
+                            ConcurrencyStamp = "06430445-5537-4f60-934f-4866b0c824e3",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "3b95fbb5-7919-4e9a-a100-e8573ef10b51",
-                            ConcurrencyStamp = "352c6f2b-3c0e-406a-9e31-5efc2d7090b5",
+                            Id = "5eb8a84f-8667-4307-8b76-c8a846d927c2",
+                            ConcurrencyStamp = "7329f8a1-a4b2-46b0-9f9f-e6e309d6e862",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -231,6 +231,32 @@ namespace RentalEquipmentCapstone.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AdminId");
+
+                    b.HasIndex("IdentityUserId");
+
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("RentalEquipmentCapstone.Models.Customer", b =>
@@ -408,6 +434,13 @@ namespace RentalEquipmentCapstone.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.Admin", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
                 });
 
             modelBuilder.Entity("RentalEquipmentCapstone.Models.Customer", b =>

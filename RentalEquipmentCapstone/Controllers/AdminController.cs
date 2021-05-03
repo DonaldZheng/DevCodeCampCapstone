@@ -1,13 +1,14 @@
-﻿using CapstoneOne.Models;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RentalEquipmentCapstone;
 using RentalEquipmentCapstone.Data;
 using RentalEquipmentCapstone.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
-namespace CapstoneOne.Controllers
+namespace RentalEquipmentCapstone.Controllers
 {
     public class AdminController : Controller
     {
@@ -17,9 +18,8 @@ namespace CapstoneOne.Controllers
         {
             _context = context;
         }
-
         // GET: AdminController
-        public IActionResult Index()
+        public ActionResult Index()
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = _context.Customers.Where(a => a.IdentityUserId == userId).ToList();
@@ -33,9 +33,8 @@ namespace CapstoneOne.Controllers
             return View(customerMatch);
         }
 
-
         // GET: AdminController/Details/5
-        public IActionResult Details(int id)
+        public ActionResult Details(int id)
         {
             ViewData["APIkeys"] = APIkeys.GoogleAPIKey;
 
@@ -52,7 +51,7 @@ namespace CapstoneOne.Controllers
         // POST: AdminController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Admin admin)
+        public ActionResult Create(Admin admin)
         {
             try
             {
@@ -74,7 +73,6 @@ namespace CapstoneOne.Controllers
         {
             var admin = _context.Customers.Where(e => e.CustomerId == id).FirstOrDefault();
             return View(admin);
-
         }
 
         // POST: AdminController/Edit/5
@@ -97,7 +95,7 @@ namespace CapstoneOne.Controllers
         }
 
         // GET: AdminController/Delete/5
-        public IActionResult Delete(int id)
+        public ActionResult Delete(int id)
         {
             var deleteCustomer = _context.Customers.Find(id);
             return View(deleteCustomer);

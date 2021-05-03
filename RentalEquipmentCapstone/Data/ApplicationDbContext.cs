@@ -1,5 +1,4 @@
-﻿using CapstoneOne.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RentalEquipmentCapstone.Models;
@@ -22,13 +21,18 @@ namespace RentalEquipmentCapstone.Data
             .HasData(
             new IdentityRole
             {
+                Id = "314a9413-2da6-4bd5-a57f-ea2c962e01be",
                 Name = "Customer",
                 NormalizedName = "CUSTOMER",
-                },
+                ConcurrencyStamp = "06430445-5537-4f60-934f-4866b0c824e3"
+            },
             new IdentityRole
             {
+                Id = "5eb8a84f-8667-4307-8b76-c8a846d927c2",
                 Name = "Admin",
-                NormalizedName = "ADMIN"
+                NormalizedName = "ADMIN",
+                ConcurrencyStamp = "7329f8a1-a4b2-46b0-9f9f-e6e309d6e862"
+
             }
             );
             builder.Entity<Product>()
