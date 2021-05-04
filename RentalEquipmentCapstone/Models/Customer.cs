@@ -47,6 +47,11 @@ namespace RentalEquipmentCapstone.Models
         {
             get; set;
         }
+        [Display(Name = "Deposit")]
+        public string Deposit
+        {
+            get; set;
+        }
         [Display(Name = "Equipment Rental")]
         public string Equipment
         {

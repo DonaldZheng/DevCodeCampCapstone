@@ -205,6 +205,7 @@ namespace RentalEquipmentCapstone.Migrations
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     ZipCode = table.Column<string>(nullable: true),
+                    Deposit = table.Column<string>(nullable: true),
                     Equipment = table.Column<string>(nullable: true),
                     Comment = table.Column<string>(nullable: true),
                     Longitude = table.Column<double>(nullable: false),
@@ -245,6 +246,27 @@ namespace RentalEquipmentCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MainComments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Message = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    PostId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MainComments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MainComments_Posts_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Posts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CustomerProducts",
                 columns: table => new
                 {
@@ -265,6 +287,27 @@ namespace RentalEquipmentCapstone.Migrations
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SubComments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Message = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false),
+                    MainCommentId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SubComments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SubComments_MainComments_MainCommentId",
+                        column: x => x.MainCommentId,
+                        principalTable: "MainComments",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -344,9 +387,19 @@ namespace RentalEquipmentCapstone.Migrations
                 column: "IdentityUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MainComments_PostId",
+                table: "MainComments",
+                column: "PostId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_IdentityUserId",
                 table: "Products",
                 column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SubComments_MainCommentId",
+                table: "SubComments",
+                column: "MainCommentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -373,7 +426,7 @@ namespace RentalEquipmentCapstone.Migrations
                 name: "CustomerProducts");
 
             migrationBuilder.DropTable(
-                name: "Posts");
+                name: "SubComments");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -385,7 +438,13 @@ namespace RentalEquipmentCapstone.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
+                name: "MainComments");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Posts");
         }
     }
 }

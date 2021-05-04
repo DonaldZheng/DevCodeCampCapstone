@@ -316,6 +316,9 @@ namespace RentalEquipmentCapstone.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Deposit")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Equipment")
                         .HasColumnType("nvarchar(max)");
 

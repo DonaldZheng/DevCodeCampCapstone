@@ -89,8 +89,8 @@ namespace RentalEquipmentCapstone.Controllers
 
             var charge = charges.Create(new ChargeCreateOptions
             {
-                Amount = 500,
-                Description= "Test Payment",
+                Amount = 50000,
+                Description= "Deposit Payment",
                 Currency= "USD",
                 Customer = customer.Id,
                 ReceiptEmail = stripeEmail,
