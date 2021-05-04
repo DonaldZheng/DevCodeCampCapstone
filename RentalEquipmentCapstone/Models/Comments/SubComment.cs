@@ -9,7 +9,7 @@ namespace RentalEquipmentCapstone.Models.Comments
     {
         public int MainCommentId
         {
-            get; set;           
+            get; set;
         }
     }
 }

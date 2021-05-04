@@ -13,7 +13,7 @@ namespace RentalEquipmentCapstone.Models.Comments
         }
         public string Message
         {
-            get; set; 
+            get; set;
         }
         public DateTime Created
         {

@@ -1,3 +1,5 @@
+using GleamTech.AspNet.Core;
+using GleamTech.FileUltimate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RentalEquipmentCapstone.ActionFilters;
 using RentalEquipmentCapstone.Data;
+using RentalEquipmentCapstone.Data.Repository;
 using RentalEquipmentCapstone.Services;
 using Stripe;
 using System;
@@ -49,10 +52,16 @@ namespace RentalEquipmentCapstone
             });
 
             services.AddTransient<GeocodingService>();
+            services.AddTransient<IRepository, Repository>();
+
 
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            //Add GleamTech to the ASP.NET Core services container.
+            //----------------------
+            services.AddGleamTech();
+            //
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
 
         }
@@ -74,6 +83,16 @@ namespace RentalEquipmentCapstone
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            //Register GleamTech to the ASP.NET Core HTTP request pipeline.
+            //----------------------
+            app.UseGleamTech();
+            //----------------------
+
+            //Set this property only if you have a valid license key, otherwise do not 
+            //set it so FileUltimate runs in trial mode.  
+            //FileUltimateConfiguration.Current.LicenseKey = "QQJDJLJP34...";
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

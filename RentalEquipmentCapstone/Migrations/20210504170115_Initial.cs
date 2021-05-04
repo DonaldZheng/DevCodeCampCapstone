@@ -47,6 +47,25 @@ namespace RentalEquipmentCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Posts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Tags = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true),
+                    Created = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Posts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -352,6 +371,9 @@ namespace RentalEquipmentCapstone.Migrations
 
             migrationBuilder.DropTable(
                 name: "CustomerProducts");
+
+            migrationBuilder.DropTable(
+                name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

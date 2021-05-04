@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RentalEquipmentCapstone.Data.Repository;
 using RentalEquipmentCapstone.Models;
 using RentalEquipmentCapstone.Models.Comments;
 using Stripe;
@@ -14,11 +15,12 @@ namespace RentalEquipmentCapstone.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private IRepository _repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRepository repo)
         {
             _logger = logger;
-            var comment = new MainComment();
+            _repo = repo;
 
         }
 
@@ -26,7 +28,50 @@ namespace RentalEquipmentCapstone.Controllers
         {
             return View();
         }
+        public IActionResult FileManager()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Comment(CommentViewModel vm)
+        {
+            if (!ModelState.IsValid)
+                return RedirectToAction("Post", new
+                {
+                    id = vm.PostId
+                });
 
+            var post = _repo.GetPost(vm.PostId);
+            if (vm.MainCommentId == 0)
+            {
+                post.MainComments = post.MainComments ?? new List<MainComment>();
+
+                post.MainComments.Add(new MainComment
+                {
+                    Message = vm.Message,
+                    Created = DateTime.Now,
+                });
+
+                _repo.UpdatePost(post);
+            }
+            else
+            {
+                var comment = new SubComment
+                {
+                    MainCommentId = vm.MainCommentId,
+                    Message = vm.Message,
+                    Created = DateTime.Now,
+                };
+                _repo.AddSubComment(comment);
+            }
+
+            await _repo.SaveChangesAsync();
+
+            return RedirectToAction("Post", new
+            {
+                id = vm.PostId
+            });
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -68,6 +113,7 @@ namespace RentalEquipmentCapstone.Controllers
             }
             return View();
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

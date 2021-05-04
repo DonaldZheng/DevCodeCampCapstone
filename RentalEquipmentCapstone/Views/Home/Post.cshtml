@@ -1,0 +1,24 @@
+﻿@model Post
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Description = Model.Description;
+    ViewBag.Keywords = $"{Model.Tags?.Replace(",", " ")} {Model.Category}";
+    var base_path = Context.Request.PathBase;
+}
+<div class="post-body">
+    @Html.Raw(Model.Body)
+</div>
+
+<div class=" = comment-section">
+    @{
+        await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
+    }
+
+    @foreach (var c in Model.MainComments)
+    {
+        <p>
+            @c.Message --- @c.Created
+        </p>
+    }
+</div>

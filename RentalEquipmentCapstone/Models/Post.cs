@@ -1,4 +1,5 @@
-﻿using RentalEquipmentCapstone.Models.Comments;
+﻿
+using RentalEquipmentCapstone.Models.Comments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,41 +11,22 @@ namespace RentalEquipmentCapstone.Models
     {
         public int Id
         {
-            set; get;
+            get; set;
         }
-        public string Title
-        {
-            get; set;
-        } = "";
-        public string Body
-        {
-            get; set;
-        } = "";
-        public string Image
-        {
-            get; set;
-        } = "";
-        public string Description
-        {
-            get; set;
-        } = "";
-        public string Tags
-        {
-            get; set;
-        } = "";
-        public string Category
-        {
-            get; set;
-        } = "";
+        public string Title { get; set; } = "";
+        public string Body { get; set; } = "";
+        public string Image { get; set; } = "";
 
-        public DateTime Created
-        {
-            get; set;
-        } = DateTime.Now;
+        public string Description { get; set; } = "";
+        public string Tags { get; set; } = "";
+        public string Category { get; set; } = "";
+
+        public DateTime Created { get; set; } = DateTime.Now;
 
         public List<MainComment> MainComments
         {
             get; set;
         }
+
     }
 }

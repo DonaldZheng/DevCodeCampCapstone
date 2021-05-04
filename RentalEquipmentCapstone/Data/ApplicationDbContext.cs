@@ -84,7 +84,6 @@ namespace RentalEquipmentCapstone.Data
         {
             get; set;
         }
-
     }
          
 }
