@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RentalEquipmentCapstone.Models;
+using RentalEquipmentCapstone.Models.Comments;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -71,6 +72,19 @@ namespace RentalEquipmentCapstone.Data
         {
             get; set;
         }
+        public DbSet<Post> Posts
+        {
+            get; set;
+        }
+        public DbSet<MainComment> MainComments
+        {
+            get; set;
+        }
+        public DbSet<SubComment> SubComments
+        {
+            get; set;
+        }
+
     }
          
 }

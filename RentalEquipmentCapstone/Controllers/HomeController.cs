@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RentalEquipmentCapstone.Models;
+using RentalEquipmentCapstone.Models.Comments;
 using Stripe;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace RentalEquipmentCapstone.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            var comment = new MainComment();
+
         }
 
         public IActionResult Index()
