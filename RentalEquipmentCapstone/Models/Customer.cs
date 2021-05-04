@@ -47,11 +47,27 @@ namespace RentalEquipmentCapstone.Models
         {
             get; set;
         }
+        [Display(Name = "Months of Rental?")]
+        public string RentedMonths
+        {
+            get; set;
+        }
+        [Display(Name = "Return Date")]
+        public DateTime? ReturnDate
+        {
+            get; set;
+        }
+        [Display(Name = "Balance Due")]
+        public string BalanceDue
+        {
+            get; set;
+        }
         [Display(Name = "Deposit")]
         public string Deposit
         {
             get; set;
         }
+
         [Display(Name = "Equipment Rental")]
         public string Equipment
         {

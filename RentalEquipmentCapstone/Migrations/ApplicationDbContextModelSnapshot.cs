@@ -310,6 +310,9 @@ namespace RentalEquipmentCapstone.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("BalanceDue")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
@@ -337,6 +340,12 @@ namespace RentalEquipmentCapstone.Migrations
 
                     b.Property<double>("Longitude")
                         .HasColumnType("float");
+
+                    b.Property<string>("RentedMonths")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ReturnDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -418,8 +427,8 @@ namespace RentalEquipmentCapstone.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<string>("Price")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductId");
 
@@ -433,35 +442,35 @@ namespace RentalEquipmentCapstone.Migrations
                             ProductId = 1,
                             Description = "Let Us Do All The Planning For Your Date!",
                             Name = "Bench Rental",
-                            Price = 100.0
+                            Price = "$100 Per Month"
                         },
                         new
                         {
                             ProductId = 2,
                             Description = "Dumbbell Ranging from 2.5lbs to 150lbs",
                             Name = "Dumbbell Rental",
-                            Price = 100.0
+                            Price = "$100 Per Month"
                         },
                         new
                         {
                             ProductId = 3,
                             Description = "Plate Ranging from 2.5lbs to 45lbs",
                             Name = "Plate Rental",
-                            Price = 100.0
+                            Price = "$100 Per Month"
                         },
                         new
                         {
                             ProductId = 4,
                             Description = "Barbell For Benching, Deadlifting, and Squating",
                             Name = "Barbell Rental",
-                            Price = 100.0
+                            Price = "$100 Per Month"
                         },
                         new
                         {
                             ProductId = 5,
                             Description = "Racks To Place Your Dumbbells and Plates",
                             Name = "Rack Rental",
-                            Price = 100.0
+                            Price = "$100 Per Month"
                         });
                 });
 

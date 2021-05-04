@@ -205,6 +205,9 @@ namespace RentalEquipmentCapstone.Migrations
                     City = table.Column<string>(nullable: true),
                     State = table.Column<string>(nullable: true),
                     ZipCode = table.Column<string>(nullable: true),
+                    RentedMonths = table.Column<string>(nullable: true),
+                    ReturnDate = table.Column<DateTime>(nullable: true),
+                    BalanceDue = table.Column<string>(nullable: true),
                     Deposit = table.Column<string>(nullable: true),
                     Equipment = table.Column<string>(nullable: true),
                     Comment = table.Column<string>(nullable: true),
@@ -231,7 +234,7 @@ namespace RentalEquipmentCapstone.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: false),
+                    Price = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -325,11 +328,11 @@ namespace RentalEquipmentCapstone.Migrations
                 columns: new[] { "ProductId", "Description", "IdentityUserId", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 1, "Let Us Do All The Planning For Your Date!", null, "Bench Rental", 100.0 },
-                    { 2, "Dumbbell Ranging from 2.5lbs to 150lbs", null, "Dumbbell Rental", 100.0 },
-                    { 3, "Plate Ranging from 2.5lbs to 45lbs", null, "Plate Rental", 100.0 },
-                    { 4, "Barbell For Benching, Deadlifting, and Squating", null, "Barbell Rental", 100.0 },
-                    { 5, "Racks To Place Your Dumbbells and Plates", null, "Rack Rental", 100.0 }
+                    { 1, "Let Us Do All The Planning For Your Date!", null, "Bench Rental", "$100 Per Month" },
+                    { 2, "Dumbbell Ranging from 2.5lbs to 150lbs", null, "Dumbbell Rental", "$100 Per Month" },
+                    { 3, "Plate Ranging from 2.5lbs to 45lbs", null, "Plate Rental", "$100 Per Month" },
+                    { 4, "Barbell For Benching, Deadlifting, and Squating", null, "Barbell Rental", "$100 Per Month" },
+                    { 5, "Racks To Place Your Dumbbells and Plates", null, "Rack Rental", "$100 Per Month" }
                 });
 
             migrationBuilder.CreateIndex(
