@@ -11,7 +11,7 @@ namespace RentalEquipmentCapstone.Models
     public class Product
     {
         [Key]
-        public int ProductId
+        public string Id
         {
             get; set;
         }
@@ -19,15 +19,11 @@ namespace RentalEquipmentCapstone.Models
         {
             get; set;
         }
-        public string Description
+        public double Price
         {
             get; set;
         }
-        public string Price
-        {
-            get; set;
-        }
-        public ICollection<CustomerProduct> ShoppingCart
+        public string Photo
         {
             get; set;
         }

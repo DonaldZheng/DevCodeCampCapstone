@@ -410,21 +410,6 @@ namespace RentalEquipmentCapstone.Migrations
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("RentalEquipmentCapstone.Models.CustomerProduct", b =>
-                {
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CustomerProducts");
-                });
-
             modelBuilder.Entity("RentalEquipmentCapstone.Models.Post", b =>
                 {
                     b.Property<int>("Id")
@@ -460,13 +445,8 @@ namespace RentalEquipmentCapstone.Migrations
 
             modelBuilder.Entity("RentalEquipmentCapstone.Models.Product", b =>
                 {
-                    b.Property<int>("ProductId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(450)");
@@ -474,51 +454,17 @@ namespace RentalEquipmentCapstone.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Price")
+                    b.Property<string>("Photo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ProductId");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("IdentityUserId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 1,
-                            Description = "Let Us Do All The Planning For Your Date!",
-                            Name = "Bench Rental",
-                            Price = "$100 Per Month"
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            Description = "Dumbbell Ranging from 2.5lbs to 150lbs",
-                            Name = "Dumbbell Rental",
-                            Price = "$100 Per Month"
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            Description = "Plate Ranging from 2.5lbs to 45lbs",
-                            Name = "Plate Rental",
-                            Price = "$100 Per Month"
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            Description = "Barbell For Benching, Deadlifting, and Squating",
-                            Name = "Barbell Rental",
-                            Price = "$100 Per Month"
-                        },
-                        new
-                        {
-                            ProductId = 5,
-                            Description = "Racks To Place Your Dumbbells and Plates",
-                            Name = "Rack Rental",
-                            Price = "$100 Per Month"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -609,21 +555,6 @@ namespace RentalEquipmentCapstone.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
-                });
-
-            modelBuilder.Entity("RentalEquipmentCapstone.Models.CustomerProduct", b =>
-                {
-                    b.HasOne("RentalEquipmentCapstone.Models.Customer", "Customer")
-                        .WithMany("ShoppingCart")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RentalEquipmentCapstone.Models.Product", "Product")
-                        .WithMany("ShoppingCart")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("RentalEquipmentCapstone.Models.Product", b =>

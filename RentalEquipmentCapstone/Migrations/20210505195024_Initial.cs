@@ -267,16 +267,15 @@ namespace RentalEquipmentCapstone.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Price = table.Column<string>(nullable: true),
+                    Price = table.Column<double>(nullable: false),
+                    Photo = table.Column<string>(nullable: true),
                     IdentityUserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Products_AspNetUsers_IdentityUserId",
                         column: x => x.IdentityUserId,
@@ -307,30 +306,6 @@ namespace RentalEquipmentCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomerProducts",
-                columns: table => new
-                {
-                    CustomerId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CustomerProducts", x => new { x.CustomerId, x.ProductId });
-                    table.ForeignKey(
-                        name: "FK_CustomerProducts_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "CustomerId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CustomerProducts_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SubComments",
                 columns: table => new
                 {
@@ -354,23 +329,12 @@ namespace RentalEquipmentCapstone.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[,]
-                {
-                    { "314a9413-2da6-4bd5-a57f-ea2c962e01be", "06430445-5537-4f60-934f-4866b0c824e3", "Customer", "CUSTOMER" },
-                    { "5eb8a84f-8667-4307-8b76-c8a846d927c2", "7329f8a1-a4b2-46b0-9f9f-e6e309d6e862", "Admin", "ADMIN" }
-                });
+                values: new object[] { "314a9413-2da6-4bd5-a57f-ea2c962e01be", "06430445-5537-4f60-934f-4866b0c824e3", "Customer", "CUSTOMER" });
 
             migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "ProductId", "Description", "IdentityUserId", "Name", "Price" },
-                values: new object[,]
-                {
-                    { 1, "Let Us Do All The Planning For Your Date!", null, "Bench Rental", "$100 Per Month" },
-                    { 2, "Dumbbell Ranging from 2.5lbs to 150lbs", null, "Dumbbell Rental", "$100 Per Month" },
-                    { 3, "Plate Ranging from 2.5lbs to 45lbs", null, "Plate Rental", "$100 Per Month" },
-                    { 4, "Barbell For Benching, Deadlifting, and Squating", null, "Barbell Rental", "$100 Per Month" },
-                    { 5, "Racks To Place Your Dumbbells and Plates", null, "Rack Rental", "$100 Per Month" }
-                });
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "5eb8a84f-8667-4307-8b76-c8a846d927c2", "7329f8a1-a4b2-46b0-9f9f-e6e309d6e862", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Admins_IdentityUserId",
@@ -422,11 +386,6 @@ namespace RentalEquipmentCapstone.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CustomerProducts_ProductId",
-                table: "CustomerProducts",
-                column: "ProductId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Customers_IdentityUserId",
                 table: "Customers",
                 column: "IdentityUserId");
@@ -471,7 +430,10 @@ namespace RentalEquipmentCapstone.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CustomerProducts");
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "SubComments");
@@ -483,16 +445,10 @@ namespace RentalEquipmentCapstone.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "Products");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "MainComments");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Posts");

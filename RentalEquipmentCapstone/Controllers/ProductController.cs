@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RentalEquipmentCapstone.Data;
+using RentalEquipmentCapstone.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,12 @@ namespace RentalEquipmentCapstone.Controllers
             _context = context;
         }
         // GET: ProductController
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            var products = _context.Products.ToList();
-            if (products.Count == 0)
-            {
-                return RedirectToAction(nameof(Create));
-            }
 
-            return View(products);
+            ProductViewModel productModel = new ProductViewModel();
+            ViewBag.products = productModel.findAll();
+            return View();
         }
 
         // GET: ProductController/Details/5
