@@ -84,6 +84,16 @@ namespace RentalEquipmentCapstone.Data
         {
             get; set;
         }
+        public DbSet<Article> Articles
+        {
+            get; set;
+        }
+        public DbSet<ArticleComment> ArticlesComments
+        {
+            get; set;
+        }
+
+
     }
-         
+
 }

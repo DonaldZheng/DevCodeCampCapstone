@@ -257,6 +257,53 @@ namespace RentalEquipmentCapstone.Migrations
                     b.ToTable("Admins");
                 });
 
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.Article", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.ArticleComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ArticlesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comments")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PublishedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticlesId");
+
+                    b.ToTable("ArticlesComments");
+                });
+
             modelBuilder.Entity("RentalEquipmentCapstone.Models.Comments.MainComment", b =>
                 {
                     b.Property<int>("Id")
@@ -530,6 +577,15 @@ namespace RentalEquipmentCapstone.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
                         .HasForeignKey("IdentityUserId");
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.ArticleComment", b =>
+                {
+                    b.HasOne("RentalEquipmentCapstone.Models.Article", "Articles")
+                        .WithMany("ArticlesComments")
+                        .HasForeignKey("ArticlesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("RentalEquipmentCapstone.Models.Comments.MainComment", b =>
