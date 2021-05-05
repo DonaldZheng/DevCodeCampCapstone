@@ -16,23 +16,23 @@ namespace RentalEquipmentCapstone.ViewModel
         {
             _products = new List<Product> { new Product()
                 {
-                    Id ="1", Name = "Flower1", Photo ="thumb1.jpg", Price = 100.00
+                    Id ="1", Name = "Bench Rental", Photo ="thumb1.jpg", Price = 100.00
                 },
                 new Product()
                 {
-                    Id ="2", Name = "Flower2", Photo ="thumb2.jpg", Price = 100.00
+                    Id ="2", Name = "Dumbbell Rental", Photo ="thumb2.jpg", Price = 100.00
                 },
                 new Product()
                 {
-                    Id ="3", Name = "Flower3", Photo ="thumb3.jpg", Price = 100.00
+                    Id ="3", Name = "Plate Rental", Photo ="thumb3.jpg", Price = 100.00
                 },
                 new Product()
                 {
-                    Id ="4", Name = "Flower4", Photo ="thumb4.jpg", Price = 100.00
+                    Id ="4", Name = "Barbell Rental", Photo ="thumb4.jpg", Price = 100.00
                 },
                 new Product()
                 {
-                    Id ="5", Name = "Flower5", Photo ="thumb5.jpg", Price = 100.00
+                    Id ="5", Name = "Rack Rental", Photo ="thumb5.jpg", Price = 100.00
                 },
 
             };
