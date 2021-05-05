@@ -58,7 +58,11 @@ namespace RentalEquipmentCapstone.Controllers
         }
         public IActionResult Remove(string id)
         {
-        
+            List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            int index = isExist(id);
+            cart.RemoveAt(index);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
+            return RedirectToAction("Index");
         }
     }
 }
