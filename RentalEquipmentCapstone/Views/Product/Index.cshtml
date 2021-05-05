@@ -12,15 +12,16 @@
 </head>
 <body>
     <h3>Products List</h3>
-    <table cellpadding="2" cellspacing="2" border="1">
-
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Photo</th>
-            <th>Price</th>
-            <th>Buy</th>
-        </tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Price</th>
+                <th>Buy</th>
+            </tr>
+        </thead>
         @foreach (var product in ViewBag.products)
         {
     <tr>

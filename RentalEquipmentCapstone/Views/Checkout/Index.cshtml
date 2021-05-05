@@ -1,6 +1,7 @@
-﻿@{
-    Layout = "_Layout";
-
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<RentalEquipmentCapstone.Data.StripeSettings> Stripe
+@{
+    ViewData["Title"] = "Home Page";
 }
 <!DOCTYPE html>
 <html>
@@ -9,16 +10,30 @@
 </head>
 
 <body>
-    <h3>Checkout Page</h3>
-    <table cellpadding="2" cellspacing="2" border="1">
-        <tr>
-            <th>Total Amount to Pay</th>
-        </tr>
-        <tr>
-            <td>
-                @ViewBag.total
-            </td>
-        </tr>
-        </table>
+    <center>
+        <h3>Checkout Page</h3>
+        <div class="text-center">
+            <article>
+                <label>Amount Due: $500.00</label>
+            </article>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    Stripe.setPublishableKey('PUBLISHABLE_KEY');
+                    data-key="@Stripe.Value.PublishableKey"
+                    data-description="Sample Charge"
+                    data-amount="50000"
+                    data-locale="auto">
+            </script>
+            <br />
+            <table cellpadding="2" cellspacing="2" border="1" align="center">
+                <tr>
+                    <th>Amount Due</th>
+                </tr>
+                <tr>
+                    <td>
+                        @ViewBag.total
+                    </td>
+                </tr>
+            </table>
+            </center>
 </body>
 </html>

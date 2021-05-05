@@ -54,6 +54,13 @@ namespace RentalEquipmentCapstone
             services.AddTransient<GeocodingService>();
             services.AddTransient<IRepository, Repository>();
 
+            services.AddDistributedMemoryCache();
+            services.AddSession(option =>
+            {
+                option.IdleTimeout = TimeSpan.FromSeconds(20);
+                option.Cookie.HttpOnly = true;
+                option.Cookie.IsEssential = true;
+            });
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -97,6 +104,7 @@ namespace RentalEquipmentCapstone
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();
