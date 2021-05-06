@@ -10,7 +10,7 @@ using RentalEquipmentCapstone.Data;
 namespace RentalEquipmentCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210505195024_Initial")]
+    [Migration("20210506005056_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

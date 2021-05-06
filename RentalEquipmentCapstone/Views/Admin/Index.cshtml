@@ -4,7 +4,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h1>Customers' Information</h1>
 <p>
     <a asp-action="Create">Create New</a>
@@ -46,7 +45,7 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model){
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -80,7 +79,7 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
+                <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a>|
                 <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
             </td>
         </tr>
