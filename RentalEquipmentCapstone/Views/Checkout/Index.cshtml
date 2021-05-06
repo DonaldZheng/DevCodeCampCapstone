@@ -13,17 +13,8 @@
     <center>
         <h3>Checkout Page</h3>
         <div class="text-center">
-            <article>
-                <label>Amount Due: $500.00</label>
-            </article>
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    Stripe.setPublishableKey('PUBLISHABLE_KEY');
-                    data-key="@Stripe.Value.PublishableKey"
-                    data-description="Sample Charge"
-                    data-amount="50000"
-                    data-locale="auto">
-            </script>
-            <br />
+
+
             <table cellpadding="2" cellspacing="2" border="1" align="center">
                 <tr>
                     <th>Amount Due</th>
@@ -34,6 +25,13 @@
                     </td>
                 </tr>
             </table>
-            </center>
+            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    Stripe.setPublishableKey('PUBLISHABLE_KEY');
+                    data-key="@Stripe.Value.PublishableKey"
+                    data-description="Sample Charge"
+                    data-amount="50000"
+                    data-locale="auto">
+            </script>
+</center>
 </body>
 </html>
