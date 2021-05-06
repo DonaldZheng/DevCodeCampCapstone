@@ -4,56 +4,50 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <form asp-action="Charge" asp-controller="Home" method="POST">
-        <article>
-            <label>Deposit Fee: $500.00</label>
-        </article>
-        @*<script src="//checkout.stripe.com/v2/checkout.js"
-                class="stripe-button"
-                data-keyboard="@Stripe.Value.PublishableKey"
-                data-locale="auto"
-                data-description="Sample Charge">
-        </script>*@
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                Stripe.setPublishableKey('PUBLISHABLE_KEY');
-                data-key= "@Stripe.Value.PublishableKey"
-                data-description="Sample Charge"
-                data-amount="50000"
-                data-locale="auto">
-        </script>
+
+<body>
+    <center>
+        <img src="~/images/gym2.jpg" width=100% height=100% />
         <br />
         <br />
-    </form>
-    <form action="https://www.paypal.com/donate" method="post" target="_top">
-        <input type="hidden" name="business" value="TVDQBBF9V8GGW" />
-        <input type="hidden" name="item_name" value="Support Local Events for Powerlifting and Calisthenics" />
-        <input type="hidden" name="currency_code" value="USD" />
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-    </form>
-</div>
+        <h1>Introduction</h1>
+    </center>
+</body>
 
 <bold>
     <center>
-        <h1>Introduction</h1>
-        <br />
-
-        <h5>Barbell Home</h5>
-        <p>text text text</p>
-       
-        <br />
-
+        <p>Are you looking to stay SWOLE and FIT during this pandemic?</p>
+        <p>Are you trying to have your own personal gym at home?</p>
+        <p>Are you trying to turn a new leaf and live a long healthy life? </p>
         <p>
-          text text text
+            Barbell at Home is the RIGHT place for you!!! With a simple deposit of $500, you are able to rent gym equipment and build your own personal gym at home.
+            It's honestly as simple as adding something to your cart and in 3-5 business day someone from Barbell at Home will personally come to you and deliver your equipment
         </p>
         <br />
-        <h3>Products</h3>
-        <p>Bench Rental</p>
-        <p>Dumbbell Rental</p>
-        <p>Plate Rental</p>
-        <p>Barbell Rental</p>
-        <p>Rack Rental</p>
+        <h3>Barbell at Home</h3>
+        <p>From Bench Rentals to Dumbbell Rentals to Plate Rental to Barbell Rentals to EVEN Rack Rentals</p>
+        <p>What You Need to Build Your Home Gym, We Have Your Back!</p>
+        <br />
+        <h3>
+            Pay Your Deposit Now!
+        </h3>
+        <div class="text-center">
+            <form asp-action="Charge" asp-controller="Home" method="POST">
+                <article>
+                    <label>Deposit Fee: $500.00</label>
+
+
+                </article>
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        Stripe.setPublishableKey('PUBLISHABLE_KEY');
+                        data-key="@Stripe.Value.PublishableKey"
+                        data-description="Sample Charge"
+                        data-amount="50000"
+                        data-locale="auto">
+                </script>
+            </form>
+
+        </div>
         <br />
         <h3>Contact</h3>
         <h6>Barbell at Home</h6>
@@ -63,5 +57,14 @@
 
 
     </center>
-
+    
 </bold>
+<center>
+<form action="https://www.paypal.com/donate" method="post" target="_top">
+    <input type="hidden" name="business" value="TVDQBBF9V8GGW" />
+    <input type="hidden" name="item_name" value="Support Local Events for Powerlifting and Calisthenics" />
+    <input type="hidden" name="currency_code" value="USD" />
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+</form>
+</center>
