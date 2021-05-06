@@ -81,6 +81,21 @@ namespace RentalEquipmentCapstone.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Upcomings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Equipment = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Upcomings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ArticlesComments",
                 columns: table => new
                 {
@@ -437,6 +452,9 @@ namespace RentalEquipmentCapstone.Migrations
 
             migrationBuilder.DropTable(
                 name: "SubComments");
+
+            migrationBuilder.DropTable(
+                name: "Upcomings");
 
             migrationBuilder.DropTable(
                 name: "Articles");

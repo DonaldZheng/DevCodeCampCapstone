@@ -21,6 +21,10 @@ namespace RentalEquipmentCapstone.Models
         {
             get; set;
         }
-
+        [Display(Name = "Image URL")]
+        public string Image
+        {
+            get; set;
+        }
     }
 }

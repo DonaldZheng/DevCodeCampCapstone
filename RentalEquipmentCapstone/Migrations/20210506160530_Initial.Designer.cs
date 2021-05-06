@@ -10,7 +10,7 @@ using RentalEquipmentCapstone.Data;
 namespace RentalEquipmentCapstone.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210506142752_Initial")]
+    [Migration("20210506160530_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -467,6 +467,27 @@ namespace RentalEquipmentCapstone.Migrations
                     b.HasIndex("IdentityUserId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("RentalEquipmentCapstone.Models.Upcoming", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Equipment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Upcomings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
