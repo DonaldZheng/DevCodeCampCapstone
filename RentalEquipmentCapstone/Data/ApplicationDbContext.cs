@@ -69,6 +69,10 @@ namespace RentalEquipmentCapstone.Data
         {
             get; set;
         }
+        public DbSet<Upcoming> Upcomings
+        {
+            get; set;
+        }
 
 
     }

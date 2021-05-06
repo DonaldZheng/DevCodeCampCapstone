@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RentalEquipmentCapstone.Models
 {
-    public class Suggestion
+    public class Upcoming
     {
         [Key]
         public int Id
