@@ -48,7 +48,7 @@ namespace RentalEquipmentCapstone.Models
             get; set;
         }
 
-        [Display(Name ="Bench" + "Dumbbell" + "Plate" + "Barbell" + "Rack")]
+        [Display(Name ="Rental: Bench Dumbbell Plate Barbell Rack")]
 
         public string Equipment
         {
