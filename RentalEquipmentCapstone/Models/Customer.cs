@@ -47,6 +47,13 @@ namespace RentalEquipmentCapstone.Models
         {
             get; set;
         }
+
+        [Display(Name ="Bench" + "Dumbbell" + "Plate" + "Barbell" + "Rack")]
+
+        public string Equipment
+        {
+            get; set;
+        }
         [Display(Name = "Months of Rental?")]
         public string RentedMonths
         {
@@ -64,12 +71,6 @@ namespace RentalEquipmentCapstone.Models
         }
         [Display(Name = "Deposit")]
         public string Deposit
-        {
-            get; set;
-        }
-
-        [Display(Name = "Equipment Rental")]
-        public string Equipment
         {
             get; set;
         }
