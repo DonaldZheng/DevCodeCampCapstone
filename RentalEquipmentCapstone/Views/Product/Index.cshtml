@@ -11,30 +11,33 @@
     <title>Index</title>
 </head>
 <body>
-    <h3>Products List</h3>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Photo</th>
-                <th>Price</th>
-                <th>Buy</th>
-            </tr>
-        </thead>
-        @foreach (var product in ViewBag.products)
-        {
-    <tr>
-        <td>@product.Id</td>
-        <td>@product.Name</td>
-        <td><img src="~/images/@product.Photo" width="60" /></td>
-        <td>@product.Price</td>
-        <td align="center">
-            <a asp-controller="cart" asp-action="buy" asp-route-id="@product.Id">Rent Now</a>
-        </td>
-    </tr>
-        }
+    <center>
+        <h1>Products Page</h1>
+        <table border="5" width="100%" cellpadding="4" cellspacing="3">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Photo</th>
+                    <th>Price</th>
+                    <th>Buy</th>
+                </tr>
+            </thead>
+            @foreach (var product in ViewBag.products)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td><img src="~/images/@product.Photo" width="20%" /></td>
+                    <td>@product.Price</td>
+                    <td align="center">
+                        <a asp-controller="cart" asp-action="buy" asp-route-id="@product.Id">Rent Now</a>
+                    </td>
+                </tr>
+            }
 
-    </table>
+        </table>
+    </center>
+    <a asp-area="" asp-controller="Home" asp-action="Index">Back to Home</a>
 </body>
 </html>
