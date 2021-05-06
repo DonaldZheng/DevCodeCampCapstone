@@ -17,7 +17,7 @@
 
             <table cellpadding="2" cellspacing="2" border="1" align="center">
                 <tr>
-                    <th>Amount Due</th>
+                    <th>TOTAL AMOUNT TO PAY</th>
                 </tr>
                 <tr>
                     <td>
@@ -25,13 +25,18 @@
                     </td>
                 </tr>
             </table>
-            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    Stripe.setPublishableKey('PUBLISHABLE_KEY');
-                    data-key="@Stripe.Value.PublishableKey"
-                    data-description="Sample Charge"
-                    data-amount="50000"
-                    data-locale="auto">
-            </script>
+            <br />
+            <form asp-action="Charge" asp-controller="Checkout" method="POST">
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        Stripe.setPublishableKey('PUBLISHABLE_KEY');
+                        data-key="@Stripe.Value.PublishableKey"
+                        data-description="Sample Charge"
+                        data-amount="50000"
+                        data-locale="auto">
+                </script>
+            </form>
+
 </center>
+
 </body>
 </html>
